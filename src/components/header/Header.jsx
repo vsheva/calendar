@@ -1,6 +1,5 @@
 import React from 'react';
 import './header.scss';
-
 import {months} from "./../../utils/dateUtils.js"
 
 

@@ -6,16 +6,15 @@ import './common.scss';
 
 
 const App =()=> {
-  const[currentWeek, setCurrentWeek]= useState(new Date())
-  const weekDates = generateWeekRange(getWeekStartDate(currentWeek));
+const[currentWeek, setCurrentWeek]= useState(new Date())
+const weekDates = generateWeekRange(getWeekStartDate(currentWeek));
 
-  const todayWeek=()=>setCurrentWeek(new Date())
-  const prevWeek=()=>setCurrentWeek(new Date(currentWeek.setDate(currentWeek.getDate()-7)))
-  const nextWeek=()=>setCurrentWeek(new Date(currentWeek.setDate(currentWeek.getDate()+7)))
+    const todayWeek=()=>setCurrentWeek(new Date())
+    const prevWeek=()=>setCurrentWeek(new Date(currentWeek.setDate(currentWeek.getDate()-7)))
+    const nextWeek=()=>setCurrentWeek(new Date(currentWeek.setDate(currentWeek.getDate()+7)))
 
 
-
-  return (
+    return (
       <>
         <Header weekDates={weekDates}
                 todayWeek={todayWeek}
@@ -46,6 +45,7 @@ export default App;
 
 
 
+
 /*
 const date =new Date
 console.log(new Date(date.setDate(date.getDate() - 7)))  //Wed May 25 2022 02:46:40 GMT+0300 (Eastern European Summer Time)
@@ -62,6 +62,14 @@ console.log(new Date(date.setDate(-6)))                   //Sun Apr 24 2022 02:4
 */
 
 
+
+/*
+    const date=new Date()
+    console.log(date.getDate())
+    console.log(date.setDate(1)) //устанавливает день месяца в 86796796797
+    //console.log(date(date.setDate(86796796797))) //показывает дату и время)
+    console.log(new Date(0)) //показывает 01.01.1970)
+*/
 
 
 
