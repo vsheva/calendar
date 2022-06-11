@@ -24,4 +24,7 @@
 .delete-event-btn {
   cursor: pointer;
   border: none;
+  position: absolute;
+  z-index: 1;
+  width: 80%;
 }

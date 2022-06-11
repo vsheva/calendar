@@ -1,49 +1,39 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import Header from './components/header/Header.jsx';
 import Calendar from './components/calendar/Calendar.jsx';
-import { getWeekStartDate, generateWeekRange } from '../src/utils/dateUtils.js';
+import {getWeekStartDate, generateWeekRange} from '../src/utils/dateUtils.js';
 import './common.scss';
 
 
-const App =()=> {
-const[currentWeek, setCurrentWeek]= useState(new Date())
-const weekDates = generateWeekRange(getWeekStartDate(currentWeek));
+const App = () => {
+    const [currentWeek, setCurrentWeek] = useState(new Date())
+    const [isOpenModalWindow, setIsOpenModalWindow] = useState(false);
+    const weekDates = generateWeekRange(getWeekStartDate(currentWeek));
 
-    const todayWeek=()=>setCurrentWeek(new Date())
-    const prevWeek=()=>setCurrentWeek(new Date(currentWeek.setDate(currentWeek.getDate()-7)))
-    const nextWeek=()=>setCurrentWeek(new Date(currentWeek.setDate(currentWeek.getDate()+7)))
+    const todayWeek = () => setCurrentWeek(new Date())
+    const prevWeek = () => setCurrentWeek(new Date(currentWeek.setDate(currentWeek.getDate() - 7)))
+    const nextWeek = () => setCurrentWeek(new Date(currentWeek.setDate(currentWeek.getDate() + 7)))
 
 
     return (
-      <>
-        <Header weekDates={weekDates}
-                todayWeek={todayWeek}
-                prevWeek={prevWeek}
-                nextWeek={nextWeek}
-        />
+        <div>
+            <Header weekDates={weekDates}
+                    todayWeek={todayWeek}
+                    prevWeek={prevWeek}
+                    nextWeek={nextWeek}
+                    modalOpen={() => setIsOpenModalWindow(true)}
+            />
 
-        <Calendar weekDates={weekDates}
-
-        />
-      </>
-  )
+            <Calendar  weekDates={weekDates}
+                       isModalOpen={isOpenModalWindow}
+                       closeModal={() => setIsOpenModalWindow(false)}
+            />
+        </div>
+    )
 }
 
 
 export default App;
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 /*
@@ -62,7 +52,6 @@ console.log(new Date(date.setDate(-6)))                   //Sun Apr 24 2022 02:4
 */
 
 
-
 /*
     const date=new Date()
     console.log(date.getDate())
@@ -70,12 +59,6 @@ console.log(new Date(date.setDate(-6)))                   //Sun Apr 24 2022 02:4
     //console.log(date(date.setDate(86796796797))) //показывает дату и время)
     console.log(new Date(0)) //показывает 01.01.1970)
 */
-
-
-
-
-
-
 
 
 //setState

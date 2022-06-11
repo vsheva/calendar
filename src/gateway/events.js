@@ -1,5 +1,6 @@
 const baseURL = 'https://6002aea64f17c800175581fe.mockapi.io/api/v1/events';
 
+/*
 const events = [
   {
     id: 1,
@@ -30,8 +31,11 @@ const events = [
     dateTo: new Date(2020, 8, 25, 11, 0),
   },
 ];
+*/
 
- export const createEvent = events =>
+
+
+export const createEvent = events =>
     fetch(baseURL, {
       method: 'POST',
       headers: {
@@ -44,25 +48,26 @@ const events = [
       }
     });
 
-
 export const fetchEvents = () => {
   return fetch(baseURL)
       .then(response => {
         if (!response.ok) {
-         alert('Server Error. Cannot display events');
+          alert('Server Error. Cannot display events');
         }
         return response.json();
       })
-      .then((events) =>
-          events.map(({dateFrom, dateTo, ...event }) => ({
-            dateFrom: new Date(dateFrom),
+      .then(events =>{
+          console.log('events:', events[0])
+          return events.map(({ dateFrom, dateTo, ...event }) => ({
+              ...event,
+              dateFrom: new Date(dateFrom),
             dateTo: new Date(dateTo),
-            ...event,
-          })),
+
+          }))},
       );
 };
 
-export const deleteEvent = (id) => {
+export const deleteEvent = id => {
   return fetch(`${baseURL}/${id}`, {
     method: 'DELETE',
   }).then(response => {
@@ -76,8 +81,81 @@ export const deleteEvent = (id) => {
 
 
 
+/*
+export const fetchEvents=()=> {
+  return fetch(baseURL)
+      .then(response => {
+        if(response.ok) {
+          return response.json()
+        } throw new Error("Internal Server Error. Can't display events")
+      }).then(events =>
+          events.map(({ id, dateFrom, dateTo, ...rest }) => ({
+            id: id,
+            dateFrom: new Date(dateFrom),
+            dateTo: new Date(dateTo),
+            ...rest,
+          })),
+      )
+      .catch((err)=> err.message)
+}
+
+
+export const createEvent =(events) =>
+    fetch(baseURL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json'},
+      body:JSON.stringify(events)
+    }).then(response => {
+  if(response.ok) {
+    return response.json()
+  } throw new Error("Internal Server Error. Can't display events")
+}).catch((err)=> err.message)
 
 
 
+export const updateEvents = (taskId, taskData) =>
+    fetch(`${baseURL}/${taskId}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json'},
+      body: JSON.stringify(taskData)
+    }).then(response => {
+      if(response.ok) {
+        return response.json()
+      } throw new Error("Internal Server Error. Can't display events")
+    }).catch((err)=> err.message)
+
+
+export const deleteEvent=(taskId)=>
+    fetch(`${baseURL}/${taskId}`, {
+      method: 'DELETE',
+    })
 
 export default events;
+*/
+
+
+
+
+
+
+
+
+
+/*
+export function createEvent(event) {
+  event.preventDefault();
+  const fieldEl = [...document.querySelectorAll('.event-form__field')].map(el => el.value);
+  const [title, date, startTime, endTime, description] = fieldEl;
+
+  return postEvent({
+    title,
+    description,
+    dateFrom: new Date(`${date} ${startTime}`),
+    dateTo: new Date(`${date} ${endTime}`),
+  });
+}*/
+
+
+
+
+

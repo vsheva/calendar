@@ -3,7 +3,7 @@ import './header.scss';
 import {months} from "./../../utils/dateUtils.js"
 
 
-const Header = ({weekDates, todayWeek, prevWeek, nextWeek}) => {
+const Header = ({weekDates, todayWeek, prevWeek, nextWeek, modalOpen}) => {
 
 const firstDayOfCurrentWeek =weekDates[0];
 const lastDayOfCurrentWeek = weekDates[weekDates.length - 1];
@@ -16,7 +16,7 @@ const displayedMonth = firstDayOfCurrentWeek === lastDayOfCurrentWeek
 
   return (
     <header className="header">
-      <button className="button create-event-btn" >
+      <button className="button create-event-btn" onClick={()=>modalOpen(true)} >
         <i className="fas fa-plus create-event-btn__icon" ></i>Create
       </button>
       <div className="navigation">
