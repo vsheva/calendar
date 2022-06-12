@@ -2,7 +2,7 @@
 
 ##### you can see this project via the [link](https://.netlify.app/).
 
-#### Tech stack:
+#### The tech stack is:
 
 - React
 - React Hooks
