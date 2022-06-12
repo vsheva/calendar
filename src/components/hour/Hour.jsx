@@ -58,7 +58,7 @@ Hour.propTypes = {
   dataHour: PropTypes.number.isRequired,
   hourEvents: PropTypes.array.isRequired,
   removeEvent: PropTypes.func.isRequired,
-  dayStart: PropTypes.number.isRequired,
+  //dayStart: PropTypes.da.isRequired,
 };
 
 export default Hour;

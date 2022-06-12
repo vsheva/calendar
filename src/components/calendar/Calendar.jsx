@@ -9,16 +9,18 @@ import PropTypes from 'prop-types';
 
 const Calendar = ({ weekDates, openModal, closeModal }) => {
   const [events, setEvents] = useState([]);
+
   const getEvents = () => {
-    fetchEvents().then(events =>
-      setEvents(
-        events.filter(
+    fetchEvents()
+      .then(events => {
+        const filteredEvents = events.filter(
           event =>
             new Date(event.dateFrom) >
             new Date(weekDates[0] && new Date(event.dateFrom) < new Date(weekDates[6])),
-        ),
-      ).catch(error => alert(error.message)),
-    );
+        );
+        return setEvents(filteredEvents);
+      })
+      .catch(error => alert(error.message));
   };
 
   useEffect(() => {
