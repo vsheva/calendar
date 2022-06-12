@@ -13,6 +13,6 @@
 - Webpack
 - REST API
 
-#### Commands:
+#### Command:
 
-- `npm start` - to start project
+- start project `npm start`
