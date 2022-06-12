@@ -1,83 +1,40 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Header from './components/header/Header.jsx';
 import Calendar from './components/calendar/Calendar.jsx';
-import {getWeekStartDate, generateWeekRange} from '../src/utils/dateUtils.js';
+import { getWeekStartDate, generateWeekRange } from '../src/utils/dateUtils.js';
 import './common.scss';
 
-
 const App = () => {
-    const [currentWeek, setCurrentWeek] = useState(new Date())
-    const [isOpenModalWindow, setIsOpenModalWindow] = useState(false);
-    const weekDates = generateWeekRange(getWeekStartDate(currentWeek));
+  const [startDateWeek, setStartDateWeek] = useState(new Date());
+  const [isOpenModalWindow, setIsOpenModalWindow] = useState(false);
+  const weekDates = generateWeekRange(getWeekStartDate(startDateWeek));
 
-    const todayWeek = () => setCurrentWeek(new Date())
-    const prevWeek = () => setCurrentWeek(new Date(currentWeek.setDate(currentWeek.getDate() - 7)))
-    const nextWeek = () => setCurrentWeek(new Date(currentWeek.setDate(currentWeek.getDate() + 7)))
+  const handleNextWeek = () => {
+    setStartDateWeek(new Date(startDateWeek.setDate(startDateWeek.getDate() + 7)));
+  };
+  const handlePrevWeek = () => {
+    setStartDateWeek(new Date(startDateWeek.setDate(startDateWeek.getDate() - 7)));
+  };
+  const handleTodayWeek = () => {
+    setStartDateWeek(new Date());
+  };
 
-
-    return (
-        <div>
-            <Header weekDates={weekDates}
-                    todayWeek={todayWeek}
-                    prevWeek={prevWeek}
-                    nextWeek={nextWeek}
-                    modalOpen={() => setIsOpenModalWindow(true)}
-            />
-
-            <Calendar  weekDates={weekDates}
-                       isModalOpen={isOpenModalWindow}
-                       closeModal={() => setIsOpenModalWindow(false)}
-            />
-        </div>
-    )
-}
-
+  return (
+    <>
+      <Header
+        nextWeek={handleNextWeek}
+        prevWeek={handlePrevWeek}
+        todayWeek={handleTodayWeek}
+        weekDates={weekDates}
+        openModal={() => setIsOpenModalWindow(true)}
+      />
+      <Calendar
+        weekDates={weekDates}
+        openModal={isOpenModalWindow}
+        closeModal={() => setIsOpenModalWindow(false)}
+      />
+    </>
+  );
+};
 
 export default App;
-
-
-/*
-const date =new Date
-console.log(new Date(date.setDate(date.getDate() - 7)))  //Wed May 25 2022 02:46:40 GMT+0300 (Eastern European Summer Time)
-
-console.log(date.getDate())                          //1 - число от 1 до 31 месяца
-console.log(date.getMonth())                         //5 -Целое число от 0 до 11, обозначающее месяц указанной даты по местному времени. 0 соответствует январю, 1 — февралю и так далее.
-console.log(date.getDate() - 7)                      //-6
-console.log(date.setDate(date.getDate() - 7))        //1653435857030 -число милисекунд с 1.01.1970
-console.log(date.setDate(25))                        //1653435857030
-
-console.log(new Date(date.setDate(date.getDate() - 7)))   //Wed May 18 2022 02:45:19 GMT+0300 (Eastern European Summer Time)
-console.log(new Date(date.setDate(date.getDate() - 7)))   //Wed May 11 2022 02:49:03 GMT+0300 (Eastern European Summer Time)
-console.log(new Date(date.setDate(-6)))                   //Sun Apr 24 2022 02:49:27 GMT+0300 (Eastern European Summer Time)
-*/
-
-
-/*
-    const date=new Date()
-    console.log(date.getDate())
-    console.log(date.setDate(1)) //устанавливает день месяца в 86796796797
-    //console.log(date(date.setDate(86796796797))) //показывает дату и время)
-    console.log(new Date(0)) //показывает 01.01.1970)
-*/
-
-
-//setState
-
-// class App extends Component {
-//   state = {
-//     weekStartDate: new Date(),
-//   };
-//
-//   render() {
-//     const { weekStartDate } = this.state;
-//     const weekDates = generateWeekRange(getWeekStartDate(weekStartDate));
-//     return (
-//       <>
-//         <Header />
-//         <Calendar weekDates={weekDates} />
-//       </>
-//     );
-//   }
-// }
-//
-// export default App;
