@@ -5,11 +5,10 @@ import Sidebar from '../sidebar/Sidebar';
 import './calendar.scss';
 import Modal from '../modal/Modal';
 import { fetchEvents, deleteEvent } from '../../gateway/events';
-
+import PropTypes from 'prop-types';
 
 const Calendar = ({ weekDates, openModal, closeModal }) => {
   const [events, setEvents] = useState([]);
-
   const getEvents = () => {
     fetchEvents().then(events =>
       setEvents(
@@ -42,6 +41,12 @@ const Calendar = ({ weekDates, openModal, closeModal }) => {
       {openModal && <Modal closeModal={closeModal} getEvents={getEvents} />}
     </section>
   );
+};
+
+Calendar.propTypes = {
+  weekDates: PropTypes.array.isRequired,
+  openModal: PropTypes.bool.isRequired,
+  closeModal: PropTypes.func.isRequired,
 };
 
 export default Calendar;

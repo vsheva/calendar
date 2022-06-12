@@ -15,7 +15,7 @@ const App = () => {
   const handlePrevWeek = () => {
     setStartDateWeek(new Date(startDateWeek.setDate(startDateWeek.getDate() - 7)));
   };
-  const handleTodayWeek = () => {
+  const handleCurrentWeek = () => {
     setStartDateWeek(new Date());
   };
 
@@ -24,7 +24,7 @@ const App = () => {
       <Header
         nextWeek={handleNextWeek}
         prevWeek={handlePrevWeek}
-        todayWeek={handleTodayWeek}
+        currentWeek={handleCurrentWeek}
         weekDates={weekDates}
         openModal={() => setIsOpenModalWindow(true)}
       />

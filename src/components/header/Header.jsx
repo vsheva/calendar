@@ -1,8 +1,9 @@
 import React from 'react';
 import './header.scss';
 import { months } from './../../utils/dateUtils.js';
+import PropTypes from 'prop-types';
 
-const Header = ({ nextWeek, prevWeek, todayWeek, weekDates, openModal }) => {
+const Header = ({ nextWeek, prevWeek, currentWeek, weekDates, openModal }) => {
   const firstDayWeekMonth = months[weekDates[0].getMonth()];
   const lastDayWeekMonth = months[weekDates[6].getMonth()];
   const textMonth =
@@ -16,7 +17,7 @@ const Header = ({ nextWeek, prevWeek, todayWeek, weekDates, openModal }) => {
         <i className="fas fa-plus create-event-btn__icon"></i>Create
       </button>
       <div className="navigation">
-        <button className="navigation__today-btn button" onClick={todayWeek}>
+        <button className="navigation__today-btn button" onClick={currentWeek}>
           Today
         </button>
         <button className="icon-button navigation__nav-icon">
@@ -29,6 +30,14 @@ const Header = ({ nextWeek, prevWeek, todayWeek, weekDates, openModal }) => {
       </div>
     </header>
   );
+};
+
+Header.propTypes = {
+  nextWeek: PropTypes.func.isRequired,
+  prevWeek: PropTypes.func.isRequired,
+  currentWeek: PropTypes.func.isRequired,
+  weekDates: PropTypes.array.isRequired,
+  openModal: PropTypes.func.isRequired,
 };
 
 export default Header;
