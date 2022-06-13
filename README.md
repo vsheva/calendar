@@ -6,12 +6,13 @@
 
 - React
 - React Hooks
+- REST API
 - JavaScript (ES6)
 - Sass(Scss)
 - BEM metodology
 - HTML5
 - Webpack
-- REST API
+
 
 ### Command:
 
