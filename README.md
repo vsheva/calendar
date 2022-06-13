@@ -1,6 +1,6 @@
 # React Google Calendar
 
-##### you can see this project via the [link](https://.netlify.app/).
+##### you can see this project via the [link](https://google-calendar.netlify.app/).
 
 #### The tech stack is:
 
