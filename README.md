@@ -14,6 +14,7 @@
 - Webpack
 
 
-### Command:
 
+### Commands:
+- run `npm install`
 - start project `npm start`
