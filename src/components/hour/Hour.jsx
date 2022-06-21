@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Event from '../event/Event';
 import { formatMins } from '../../../src/utils/dateUtils.js';
 import moment from 'moment';
-import { RedLine } from './redLine';
+import { RedLine } from './RedLine.jsx';
 
 const Hour = ({ dataHour, hourEvents, dayStart, removeEvent, setIsDayUpdate }) => {
   const [hour, setHours] = useState(new Date().getHours());
