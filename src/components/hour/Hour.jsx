@@ -2,6 +2,54 @@ import React, { useState, useEffect } from 'react';
 import Event from '../event/Event';
 import { formatMins } from '../../../src/utils/dateUtils.js';
 import moment from 'moment';
+import { RedLine } from './redLine';
+
+const Hour = ({ dataHour, hourEvents, dayStart, removeEvent, setIsDayUpdate }) => {
+  const [hour, setHours] = useState(new Date().getHours());
+
+  useEffect(() => {
+    setIsDayUpdate(prev => !prev);
+  }, [hour]);
+
+  const getTodayDay =
+    moment(dayStart).format('MMMM DD YYYY') === moment(new Date()).format('MMMM DD YYYY');
+
+  return (
+    <div className="calendar__time-slot" data-time={dataHour + 1}>
+      {/* if no events in the current hour nothing will render here */}
+
+      {getTodayDay && dataHour === hour && <RedLine setHours={setHours} />}
+
+      {hourEvents.map(({ id, dateFrom, dateTo, title }) => {
+        const eventStart = `${dateFrom.getHours()}:${formatMins(dateFrom.getMinutes())}`;
+        const eventEnd = `${dateTo.getHours()}:${formatMins(dateTo.getMinutes())}`;
+
+        return (
+          <Event
+            id={id} // ?
+            key={id}
+            //calculating event height = duration of event in minutes
+            height={(dateTo.getTime() - dateFrom.getTime()) / (1000 * 60)}
+            marginTop={dateFrom.getMinutes()}
+            time={`${eventStart} - ${eventEnd}`}
+            title={title}
+            removeEvent={removeEvent}
+          />
+        );
+      })}
+    </div>
+  );
+};
+
+export default Hour;
+
+/*
+//old version
+
+import React, { useState, useEffect } from 'react';
+import Event from '../event/Event';
+import { formatMins } from '../../../src/utils/dateUtils.js';
+import moment from 'moment';
 import PropTypes from 'prop-types';
 
 const Hour = ({ dataHour, hourEvents, dayStart, removeEvent }) => {
@@ -15,19 +63,20 @@ const Hour = ({ dataHour, hourEvents, dayStart, removeEvent }) => {
     }
     const interval = setInterval(() => {
       setMinutes(minutes + 1);
+
     }, 60000);
 
     return () => {
       clearInterval(interval);
     };
-  }, []);
+  }, );
 
   const getTodayDay =
     moment(dayStart).format('MMMM DD YYYY') === moment(new Date()).format('MMMM DD YYYY');
 
   return (
     <div className="calendar__time-slot" data-time={dataHour + 1}>
-      {/* if no events in the current hour nothing will render here */}
+      {/!* if no events in the current hour nothing will render here *!/}
 
       {getTodayDay && dataHour === hour ? (
         <div style={{ top: minutes }} className="red-line"></div>
@@ -62,3 +111,4 @@ Hour.propTypes = {
 };
 
 export default Hour;
+*/

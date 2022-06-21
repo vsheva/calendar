@@ -3,7 +3,7 @@ import './event.scss';
 import PropTypes from 'prop-types';
 
 const Event = ({ height, marginTop, title, id, time, removeEvent }) => {
-  const [deleteButtonVisibility, toggleButtonVisibility] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   const eventStyle = {
     height,
@@ -19,12 +19,12 @@ const Event = ({ height, marginTop, title, id, time, removeEvent }) => {
       <div
         style={eventStyle}
         className="event"
-        onClick={() => toggleButtonVisibility(!deleteButtonVisibility)}
+        onClick={() => setIsVisible(!isVisible)}
       >
         <div className="event__title">{title}</div>
         <div className="event__time">{time}</div>
       </div>
-      {deleteButtonVisibility && (
+      {isVisible && (
         <button className="delete-event-btn" style={buttonStyle} onClick={() => removeEvent(id)}>
           <i className="fa fa-trash"></i>
         </button>
