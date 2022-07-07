@@ -15,3 +15,18 @@
     border-left: 1px solid #eee;
   }
 }
+
+.circle{
+  position: absolute;
+  height:35px;
+  width:35px;
+  border-radius:50%;
+  background: blue;
+  z-index: -1;
+  opacity:0;
+  top:15px;
+}
+
+.circle_today{
+  opacity: 1;
+}
