@@ -4,6 +4,7 @@ import './day.scss';
 import PropTypes from 'prop-types';
 
 const Day = ({ dataDay, dayEvents, dayStart, removeEvent, setIsWeekUpdate }) => {
+
   const [isDayUpdate, setIsDayUpdate] = useState(false);
   const hours = Array(24)
     .fill()

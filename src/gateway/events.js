@@ -17,7 +17,7 @@ export const fetchEvents = () => {
     );
 };
 
-export const createEvent = events =>
+export const createEvent = (events) =>
   fetch(baseURL, {
     method: 'POST',
     headers: {
