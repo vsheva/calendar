@@ -7,7 +7,7 @@
 - REST API
 - JavaScript (ES6)
 - Sass(Scss)
-- BEM metodology
+- BEM 
 - HTML5
 - Webpack
 
