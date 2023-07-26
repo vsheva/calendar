@@ -1,4 +1,4 @@
-# [React Google Calendar](https://eloquent-sable-c8575e.netlify.app/)
+# [React Google Calendar](https://google-calendar.netlify.app/)
 
 #### The tech stack is:
 
